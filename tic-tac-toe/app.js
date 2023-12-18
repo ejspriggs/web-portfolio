@@ -1,0 +1,1 @@
+alert("Tic-tac-toe placeholder script.");
