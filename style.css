@@ -1,11 +1,11 @@
-.theme-light {
+.colors-light {
     --text-color: #1f1f1f;
     --background-color: #f0f0f0;
     --item-color: #004000;
     --selected-item-color: #10a000;
 }
 
-.theme-dark {
+.colors-dark {
     --text-color: #f0f0f0;
     --background-color: #1f1f1f;
     --item-color: #201080;
@@ -19,8 +19,21 @@ html,body {
     width: 100%;
 }
 
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
 nav {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+}
+
+nav > div {
+    padding: 16px;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
 }
