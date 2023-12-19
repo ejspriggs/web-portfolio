@@ -27,6 +27,7 @@ body {
 nav {
     width: 100%;
     display: flex;
+    background-color: var(--item-color);
 }
 
 nav > div {
@@ -34,6 +35,30 @@ nav > div {
 }
 
 .dropdown {
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    position: relative;
+}
+
+.drop-items {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+    padding: 8px;
+}
+
+.drop-items * {
+    display: block;
+}
+
+.drop-menu > *:hover {
+    background-color: var(--selected-item-color);
+}
+
+.drop-menu:hover .drop-items {
+    display: block;
+}
+
+.drop-menu:hover .drop-head {
+    background-color: var(--selected-item-color);
 }
