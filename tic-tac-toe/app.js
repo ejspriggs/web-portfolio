@@ -78,8 +78,5 @@ function playerMoveHandler(e) {
     return;
 }
 
-allCells = document.querySelectorAll(".cell");
-
-for (let cell of allCells) {
-    cell.addEventListener("click", playerMoveHandler);
-}
+const boardElement = document.querySelector(".board");
+boardElement.addEventListener("click", playerMoveHandler);
