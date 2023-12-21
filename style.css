@@ -65,8 +65,13 @@ nav > div {
 
 .drop-menu:hover .drop-items {
     display: block;
+    background-color: var(--item-color);
 }
 
 .drop-menu:hover .drop-head {
+    background-color: var(--selected-item-color);
+}
+
+.drop-items div:hover,.drop-items a:hover {
     background-color: var(--selected-item-color);
 }
