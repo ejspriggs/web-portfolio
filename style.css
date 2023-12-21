@@ -34,6 +34,10 @@ nav > div {
     padding: 16px;
 }
 
+nav > div:hover {
+    background-color: var(--selected-item-color);
+}
+
 #first {
     display: block;
 }
