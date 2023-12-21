@@ -34,6 +34,14 @@ nav > div {
     padding: 16px;
 }
 
+#first {
+    display: block;
+}
+
+#second {
+    display: none;
+}
+
 .dropdown {
     display: inline-block;
     position: relative;
