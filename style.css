@@ -1,8 +1,8 @@
 .colors-light {
     --text-color: #1f1f1f;
     --background-color: #f0f0f0;
-    --item-color: #004000;
-    --selected-item-color: #10a000;
+    --item-color: #008000;
+    --selected-item-color: #10b000;
 }
 
 .colors-dark {
