@@ -59,7 +59,6 @@ function playerMoveHandler(e) {
             return;
         }
     } else {
-        console.log(`Invalid move attempt at row ${row}, column ${column}.`);
         return;
     }
 
@@ -81,7 +80,6 @@ function playerMoveHandler(e) {
                 if (zerosUntilComputerChoice > 0) {
                     zerosUntilComputerChoice--;
                 } else {
-                    console.log(`Placing computer mark at row ${row}, column ${column}`);
                     gameBoard[row][column] = 2;
                     if (playerIsCross) {
                         document.getElementById(`cell${row * 3 + column}`).innerHTML =
@@ -97,6 +95,17 @@ function playerMoveHandler(e) {
                         document.getElementById("tie-game").style.display = "none";
                         displayModal();
                         return;
+                    } else {
+                        // the computer didn't just play a winning move, but it may have
+                        // ended the game in a tie
+                        if (computerChoiceCount === 1) {
+                            gameActive = false;
+                            document.getElementById("player-win").style.display = "none";
+                            document.getElementById("player-loss").style.display = "none";
+                            document.getElementById("tie-game").style.display = "block";
+                            displayModal();
+                            return;
+                        }
                     }
                     break;
                 }
