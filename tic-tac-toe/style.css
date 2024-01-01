@@ -4,10 +4,13 @@ body {
     align-items: center;
 }
 
-.board div {
-    display: inline-block;
-    min-width: 100px;
-    min-height: 100px;
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-auto-rows: 120px;
+}
+
+.board > div {
     border-style: solid;
     border-width: 2px;
 }
@@ -31,4 +34,24 @@ body {
     height: 300px;
     background-color: white;
     border-radius: 10px;
+}
+
+#choose-glyph {
+    display: block;
+}
+
+#player-win {
+    display: none;
+}
+
+#player-loss {
+    display: none;
+}
+
+#tie-game {
+    display: none;
+}
+
+#play-again {
+    display: none;
 }

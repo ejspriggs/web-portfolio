@@ -1,3 +1,6 @@
+let gameActive = false;
+let playerIsCross;
+
 const gameBoard = [
     [0, 0, 0],
     [0, 0, 0],
@@ -31,6 +34,9 @@ function checkVictory(row, column) {
 }
 
 function playerMoveHandler(e) {
+    if (!gameActive) {
+        return;
+    }
     const cellId = e.target.id;
     const cellIdNumber = parseInt(cellId.slice(4));
     let row = Math.floor(cellIdNumber / 3);
@@ -78,5 +84,29 @@ function playerMoveHandler(e) {
     return;
 }
 
-const boardElement = document.querySelector(".board");
-boardElement.addEventListener("click", playerMoveHandler);
+function dismissModal() {
+    document.getElementById("modal-background").style.display = "none";
+}
+
+function displayModal() {
+    document.getElementById("modal-background").style.display = "flex";
+}
+
+function chooseCross() {
+    playerIsCross = true;
+    gameActive = true;
+
+    dismissModal();
+}
+
+function chooseNought() {
+    playerIsCross = false;
+    gameActive = true;
+
+    dismissModal();
+}
+
+document.getElementById("choose-cross").addEventListener("click", chooseCross);
+document.getElementById("choose-nought").addEventListener("click", chooseNought);
+document.getElementById("play-again").addEventListener("click", playAgain);
+document.getElementById("board-id").addEventListener("click", playerMoveHandler);
