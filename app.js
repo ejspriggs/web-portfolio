@@ -13,7 +13,7 @@ function selectHome() {
 
 function selectBio() {
     document.getElementById("home").style.display = "none";
-    document.getElementById("bio").style.display = "block";
+    document.getElementById("bio").style.display = "flex";
 }
 
 document.getElementById("switch-light").addEventListener("click", lightMode);

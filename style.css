@@ -46,6 +46,10 @@ nav > div:hover,footer > a:hover {
     display: none;
 }
 
+#bio > * {
+    padding: 16px;
+}
+
 .dropdown {
     display: inline-block;
     position: relative;
@@ -78,4 +82,12 @@ nav > div:hover,footer > a:hover {
 
 .drop-items div:hover,.drop-items a:hover {
     background-color: var(--selected-item-color);
+}
+
+section {
+    padding: 16px;
+}
+
+.headshot {
+    border-radius: 20%;
 }
