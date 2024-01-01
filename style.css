@@ -38,11 +38,11 @@ nav > div:hover {
     background-color: var(--selected-item-color);
 }
 
-#first {
+#home {
     display: block;
 }
 
-#second {
+#bio {
     display: none;
 }
 
