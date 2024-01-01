@@ -45,7 +45,12 @@ function playerMoveHandler(e) {
     if (gameBoard[row][column] === 0) {
         console.log(`Placing player mark at row ${row}, column ${column}`);
         gameBoard[row][column] = 1;
-        e.target.style.backgroundColor = "blue";
+        // e.target.style.backgroundColor = "blue";
+        if (playerIsCross) {
+            e.target.innerHTML = '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
+        } else {
+            e.target.innerHTML = '<img src="nought-red-100-100.svg" alt="nought glyph" width="100" height="100">';
+        }
         if (checkVictory(row, column)) {
             console.log("Player victory!");
             return;
@@ -71,7 +76,14 @@ function playerMoveHandler(e) {
                 } else {
                     console.log(`Placing computer mark at row ${row}, column ${column}`);
                     gameBoard[row][column] = 2;
-                    document.getElementById(`cell${row * 3 + column}`).style.backgroundColor = "red";
+                    // document.getElementById(`cell${row * 3 + column}`).style.backgroundColor = "red";
+                    if (playerIsCross) {
+                        document.getElementById(`cell${row * 3 + column}`).innerHTML =
+                            '<img src="nought-red-100-100.svg" alt="nought glyph" width="100" height="100">';
+                    } else {
+                        document.getElementById(`cell${row * 3 + column}`).innerHTML =
+                            '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
+                    }
                     if (checkVictory(row, column)) {
                         console.log("Computer victory. :(");
                         return;
@@ -101,6 +113,13 @@ function chooseCross() {
 
 function chooseNought() {
     playerIsCross = false;
+    gameActive = true;
+
+    dismissModal();
+}
+
+function playAgain() {
+    // reset board state here
     gameActive = true;
 
     dismissModal();
