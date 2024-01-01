@@ -24,17 +24,17 @@ body {
     background-color: var(--background-color);
 }
 
-nav {
+nav,footer {
     width: 100%;
     display: flex;
     background-color: var(--item-color);
 }
 
-nav > div {
+nav > div,footer > a {
     padding: 16px;
 }
 
-nav > div:hover {
+nav > div:hover,footer > a:hover {
     background-color: var(--selected-item-color);
 }
 
