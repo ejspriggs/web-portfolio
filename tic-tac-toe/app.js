@@ -45,14 +45,17 @@ function playerMoveHandler(e) {
     if (gameBoard[row][column] === 0) {
         console.log(`Placing player mark at row ${row}, column ${column}`);
         gameBoard[row][column] = 1;
-        // e.target.style.backgroundColor = "blue";
         if (playerIsCross) {
             e.target.innerHTML = '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
         } else {
             e.target.innerHTML = '<img src="nought-red-100-100.svg" alt="nought glyph" width="100" height="100">';
         }
         if (checkVictory(row, column)) {
-            console.log("Player victory!");
+            gameActive = false;
+            document.getElementById("player-win").style.display = "block";
+            document.getElementById("player-loss").style.display = "none";
+            document.getElementById("tie-game").style.display = "none";
+            displayModal();
             return;
         }
     } else {
@@ -63,7 +66,11 @@ function playerMoveHandler(e) {
     const computerChoiceCount = gameBoard.flat().filter(x => x === 0).length;
 
     if (computerChoiceCount === 0) {
-        console.log("Cat's game.");
+        gameActive = false;
+        document.getElementById("player-win").style.display = "none";
+        document.getElementById("player-loss").style.display = "none";
+        document.getElementById("tie-game").style.display = "block";
+        displayModal();
         return;
     } else {
         zerosUntilComputerChoice = Math.floor(Math.random() * computerChoiceCount);
@@ -76,7 +83,6 @@ function playerMoveHandler(e) {
                 } else {
                     console.log(`Placing computer mark at row ${row}, column ${column}`);
                     gameBoard[row][column] = 2;
-                    // document.getElementById(`cell${row * 3 + column}`).style.backgroundColor = "red";
                     if (playerIsCross) {
                         document.getElementById(`cell${row * 3 + column}`).innerHTML =
                             '<img src="nought-red-100-100.svg" alt="nought glyph" width="100" height="100">';
@@ -85,7 +91,11 @@ function playerMoveHandler(e) {
                             '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
                     }
                     if (checkVictory(row, column)) {
-                        console.log("Computer victory. :(");
+                        gameActive = false;
+                        document.getElementById("player-win").style.display = "none";
+                        document.getElementById("player-loss").style.display = "block";
+                        document.getElementById("tie-game").style.display = "none";
+                        displayModal();
                         return;
                     }
                     break;
@@ -107,21 +117,48 @@ function displayModal() {
 function chooseCross() {
     playerIsCross = true;
     gameActive = true;
-
     dismissModal();
+    document.getElementById("choose-glyph").style.display = "none";
+    document.getElementById("play-again").style.display = "block";
 }
 
 function chooseNought() {
     playerIsCross = false;
     gameActive = true;
-
     dismissModal();
+    document.getElementById("choose-glyph").style.display = "none";
+    document.getElementById("play-again").style.display = "block";
+
+    // player goes second, in this case, so make computer's first move immediately
+    let cell = Math.floor(Math.random() * 9);
+    let row = Math.floor(cell / 3);
+    let column = cell % 3;
+    gameBoard[row][column] = 2;
+    document.getElementById(`cell${cell}`).innerHTML = 
+        '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
 }
 
 function playAgain() {
-    // reset board state here
+    // reset logical board state
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            gameBoard[i][j] = 0;
+        }
+    }
+    // clear glyphs from DOM
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(`cell${i}`).innerHTML = '';
+    }
+    // if player is nought/second, make computer's first move immediately
+    if (!playerIsCross) {
+        let cell = Math.floor(Math.random() * 9);
+        let row = Math.floor(cell / 3);
+        let column = cell % 3;
+        gameBoard[row][column] = 2;
+        document.getElementById(`cell${cell}`).innerHTML = 
+            '<img src="cross-blue-100-100.svg" alt="cross glyph" width="100" height="100">';
+    }
     gameActive = true;
-
     dismissModal();
 }
 
