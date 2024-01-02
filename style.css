@@ -46,6 +46,12 @@ nav > div:hover,footer > a:hover {
     display: none;
 }
 
+@media (max-width: 600px) {
+    #bio {
+        flex-direction: column;
+    }
+}
+
 #bio > * {
     padding: 16px;
 }
